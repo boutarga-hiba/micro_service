@@ -14,23 +14,23 @@ public class ProductRestController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping
+    @GetMapping("/getAllProducts")
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
+    public Product getProductById(@PathVariable String id) {
         return productRepository.findById(id).orElse(null);
     }
 
-    @PostMapping
+    @PostMapping("/saveProduct")
     public Product createProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable String id, @RequestBody Product product) {
         Optional<Product> existing = productRepository.findById(id);
         if (existing.isPresent()) {
             product.setId(id);
@@ -40,7 +40,7 @@ public class ProductRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    public void deleteProduct(@PathVariable String id) {
         productRepository.deleteById(id);
     }
 } 

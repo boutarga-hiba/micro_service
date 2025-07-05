@@ -14,7 +14,7 @@ public class CustomerRestController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping
+    @GetMapping("/getAllCustomers")
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }

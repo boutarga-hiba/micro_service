@@ -24,7 +24,7 @@ public class BillCrudRestController {
         return billRepository.findById(id).orElse(null);
     }
 
-    @PostMapping
+    @PostMapping("/saveBill")
     public Bill createBill(@RequestBody Bill bill) {
         return billRepository.save(bill);
     }
